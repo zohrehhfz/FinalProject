@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('touristattractions', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string("photoname");
+			$table->string("orginalphotoname");
+            $table->text("description");
             $table->timestamps();
         });
     }
