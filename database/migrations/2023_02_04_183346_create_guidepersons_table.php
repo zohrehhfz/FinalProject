@@ -15,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('guidepersons', function (Blueprint $table) {
             $table->id();
+
+            $table->unsignedBigInteger('user_id');
+            $table->string("certificatename")->nullable();
+			$table->string("orginalcertificatename")->nullable();
+
+			$table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
+            
             $table->timestamps();
         });
     }
