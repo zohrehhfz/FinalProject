@@ -1,0 +1,535 @@
+body {
+    background-color: #f4fafa;
+    text-align: center;
+}
+
+nav {
+    text-align: right;
+    border-radius: 20px;
+    background-color: #2AAAAA;
+    padding: 0.5em;
+    overflow: auto;
+    margin: 0.5em;
+}
+
+.div1 {
+    text-align: center;
+    border-radius: 20px;
+    width: 75%;
+    background-color: white;
+    margin: 5vh 12vw 0vh 0vw;
+    box-shadow: 5px 5px 10px 5px #c8eaee;
+}
+
+.div2 {
+    text-align: center;
+    border-radius: 20px;
+    width: 75%;
+    background-color: white;
+    margin: 0vh 12vw 0vh 0vw;
+}
+
+a:hover {
+    color: #341994;
+}
+
+.img-circle {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: auto;
+}
+
+.img-circle2 {
+    object-fit: cover;
+    border-radius: 10%;
+    margin: auto;
+}
+
+.wlcomimg {
+    margin: 0vh 25vw 0vh 0vw;
+}
+
+.divhover {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: 20px auto;
+    /*width: 250px;
+    height: 250px;*/
+    width: 95%;
+    border-radius: 20px;
+    height: 270px;
+    background-color: white;
+    margin: 0vh 12vw 0vh 0vw;
+    transition: 1s box-shadow;
+}
+
+.divhover:hover {
+    box-shadow: 0 5px 35px 0px rgba(0, 0, 0, .1);
+}
+
+.divhover:hover::before,
+.divhover:hover::after {
+    display: block;
+    content: '';
+    position: absolute;
+    width: 95%;
+    height: 270px;
+    background: #389191;
+    border-radius: 20px;
+    z-index: -1;
+    animation: 1s clockwise infinite;
+}
+
+.divhover:hover:after {
+    background: #dd29bf;
+    animation: 2s counterclockwise infinite;
+}
+
+@keyframes clockwise {
+    0% {
+        top: -5px;
+        left: 0;
+    }
+    12% {
+        top: -2px;
+        left: 2px;
+    }
+    25% {
+        top: 0;
+        left: 5px;
+    }
+    37% {
+        top: 2px;
+        left: 2px;
+    }
+    50% {
+        top: 5px;
+        left: 0;
+    }
+    62% {
+        top: 2px;
+        left: -2px;
+    }
+    75% {
+        top: 0;
+        left: -5px;
+    }
+    87% {
+        top: -2px;
+        left: -2px;
+    }
+    100% {
+        top: -5px;
+        left: 0;
+    }
+}
+
+@keyframes counterclockwise {
+    0% {
+        top: -5px;
+        right: 0;
+    }
+    12% {
+        top: -2px;
+        right: 2px;
+    }
+    25% {
+        top: 0;
+        right: 5px;
+    }
+    37% {
+        top: 2px;
+        right: 2px;
+    }
+    50% {
+        top: 5px;
+        right: 0;
+    }
+    62% {
+        top: 2px;
+        right: -2px;
+    }
+    75% {
+        top: 0;
+        right: -5px;
+    }
+    87% {
+        top: -2px;
+        right: -2px;
+    }
+    100% {
+        top: -5px;
+        right: 0;
+    }
+}
+
+.div2 {
+    display: block;
+    text-align: center;
+    border-radius: 20px;
+    width: 75%;
+    height: 265px;
+    background-color: white;
+    margin: 0vh 12vw 0vh 0vw;
+}
+
+.div1 {
+    display: block;
+    text-align: center;
+    border-radius: 20px;
+    width: 75%;
+    background-color: white;
+    margin: 5vh 12vw 0vh 0vw;
+}
+
+.divupload {
+    text-align: center;
+    border-radius: 20px;
+    width: 75%;
+    background-color: white;
+    margin: 5vh 12vw 0vh 0vw;
+    box-shadow: 0 5px 35px 0px rgba(0, 0, 0, .1);
+}
+
+.li2 {
+    padding-left: 1vw;
+    font-size: 1.2em;
+    color: white;
+}
+
+.comments {
+    background-color: rgb(213, 231, 231);
+    border-radius: 20px;
+    width: 70%;
+    margin: 5vh 2vw 0vh 0vw;
+    box-shadow: 10px 10px 5px #9fd4da;
+}
+
+.certificatebutton {
+    border-radius: 20px;
+    border: none;
+    font-size: 1em;
+    width: auto;
+    background-color: #289e9e;
+    padding: 5px 5px;
+    padding-bottom: 10px;
+}
+
+.mypen {
+    margin-top: -3vh;
+}
+
+.sub_cm {
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    width: 80%;
+    text-align: right;
+    margin: 0vh 2vw 2vh 0vw;
+    padding-right: 3vw;
+}
+
+button {
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+button:hover {
+    opacity: 1;
+}
+
+#submitbutton {
+    border-radius: 20px;
+    border: none;
+    font-size: 1em;
+    width: auto;
+    background-color: #289e9e;
+    padding: 5px 5px;
+    margin: auto;
+}
+
+#submitbutton:hover {
+    color: #09494b;
+}
+
+
+/* Float cancel and delete buttons and add an equal width */
+
+.cancelbtn,
+.deletebtn {
+    float: left;
+    width: 50%;
+}
+
+
+/* Add a color to the cancel button */
+
+.cancelbtn {
+    background-color: #ccc;
+    color: black;
+}
+
+
+/* Add a color to the delete button */
+
+.deletebtn {
+    background-color: #f44336;
+}
+
+
+/* Add padding and center-align text to the container */
+
+.container {
+    padding: 16px;
+    text-align: center;
+}
+
+
+/* The Modal (background) */
+
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: #d0e2de;
+    padding-top: 50px;
+}
+
+
+/* Modal Content/Box */
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto;
+    /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid rgb(201, 228, 225);
+    width: 80%;
+    /* Could be more or less, depending on screen size */
+}
+
+
+/* Style the horizontal ruler */
+
+hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+
+
+/* The Modal Close Button (x) */
+
+.close {
+    position: absolute;
+    right: 35px;
+    top: 15px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #f1f1f1;
+}
+
+.close:hover,
+.close:focus {
+    color: #f44336;
+    cursor: pointer;
+}
+
+
+/* Clear floats */
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+
+/* Change styles for cancel button and delete button on extra small screens */
+
+@media screen and (max-width: 300px) {
+    .cancelbtn,
+    .deletebtn {
+        width: 100%;
+    }
+}
+
+.chat {
+    float: left;
+    background: #f2f5f8;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    color: #434651;
+}
+
+.chat .chat-history {
+    padding: 30px 30px 20px;
+    border-bottom: 2px solid white;
+    overflow-y: scroll;
+    height: 575px;
+}
+
+.chat .chat-history .message-data {
+    margin-bottom: 15px;
+}
+
+.chat .chat-history .message-data-time {
+    color: #a8aab1;
+    padding-left: 6px;
+}
+
+.chat .chat-history .message {
+    color: white;
+    padding: 18px 20px;
+    line-height: 26px;
+    font-size: 16px;
+    border-radius: 7px;
+    margin-bottom: 30px;
+    width: 90%;
+    position: relative;
+}
+
+.chat .chat-history .message:after {
+    bottom: 97%;
+    left: 8%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-bottom-color: var(--light-purple);
+    border-width: 10px;
+    margin-left: -10px;
+}
+
+.chat .chat-history .my-message {
+    background: var(--light-purple);
+}
+
+.chat .chat-history .other-message {
+    background: var(--purple);
+}
+
+.chat .chat-history .other-message:after {
+    border-bottom-color: var(--purple);
+    left: 90%;
+}
+
+.chat .chat-message {
+    padding: 30px;
+}
+
+.chat .chat-message textarea {
+    width: 100%;
+    border: none;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    resize: none;
+}
+
+.chat .chat-message .fa-file-o,
+.chat .chat-message .fa-file-image-o {
+    font-size: 16px;
+    color: gray;
+    cursor: pointer;
+}
+
+.chat .chat-message button {
+    float: right;
+    color: var(--purple);
+    font-size: 16px;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    background: #f2f5f8;
+}
+
+.chat .chat-message button:hover {
+    color: var(--purple);
+}
+
+.online,
+.offline,
+.me {
+    margin-right: 3px;
+    font-size: 10px;
+}
+
+.online {
+    color: var(--light-purple);
+}
+
+.offline {
+    color: #e38968;
+}
+
+.me {
+    color: var(--purple);
+}
+
+.align-left {
+    text-align: left;
+}
+
+.align-right {
+    text-align: right;
+}
+
+.float-right {
+    float: right;
+}
+
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+footer {
+    border-radius: 20px;
+    display: flex;
+    margin: auto;
+    justify-content: space-between;
+    background-color: #d7ecf0;
+    width: 95%;
+    font-size: 1.1vw;
+}
+
+.footerdiv1 {
+    text-align: center;
+    margin: 1vh 1vw 5vh 10vw;
+}
+
+.footerdiv2 {
+    text-align: center;
+    margin: 1vh 10vw 5vh 5vw;
+}
+
+#pfoot {
+    text-align: right;
+    margin-right: 2%;
+}
