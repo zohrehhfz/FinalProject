@@ -8,9 +8,19 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
-
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 class ProfileController extends Controller
 {
+    public function redirectTo()
+	{
+		$user = Auth::user();
+
+		$url = Storage::url('public/files/' . $user->photoname);
+		
+		return view('dashboard', ['user' => $user, 'photo_url' => $url]);
+    }
     /**
      * Display the user's profile form.
      */
