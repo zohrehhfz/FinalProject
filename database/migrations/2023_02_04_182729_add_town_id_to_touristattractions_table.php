@@ -29,7 +29,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('touristattractions', function (Blueprint $table) {
-            //
+            $table->dropForeign(['town_id']);
         });
     }
 };
