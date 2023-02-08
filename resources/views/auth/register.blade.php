@@ -1,4 +1,7 @@
-<x-guest-layout>
+@extends('layouts.my_layout')
+@section('title', 'ایجاد حساب ')
+@section('content')
+
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
@@ -49,4 +52,5 @@
             </x-primary-button>
         </div>
     </form>
-</x-guest-layout>
+
+@endsection
