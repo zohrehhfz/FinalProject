@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Models\Province;
 use App\Http\Controllers\ProvinceController;
 
 use Illuminate\Support\Facades\Route;
@@ -17,7 +18,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $provinces = Province::all();
+    return view('welcome',['provinces'=>$provinces]);
 });
 Route::get('/provinces/create',[ProvinceController::class, 'create'])->name('CreateProvince');
 Route::post('/provinces/store',[ProvinceController::class, 'store'])->name('StoreProvince');
