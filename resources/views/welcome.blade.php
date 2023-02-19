@@ -36,7 +36,75 @@
 	</div>
 </nav>
 
-<div>
+<div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+	<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+		<div class="carousel-indicators">
+			<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+			<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+			<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+		</div>
+		<div class="carousel-inner">
+			<div class="carousel-item active">
+				<img src="img1.jpg" class="d-block w-50 wlcomimg" alt="picture not found">
+				<div class="carousel-caption d-none d-md-block">
+					<h5> مسجد وکیل شیراز</h5>
+					<p>جاذبه گردشگری استان فارس</p>
+				</div>
+			</div>
+			<div class="carousel-item">
+				<img src="img2.jpg" class="d-block w-50 wlcomimg" alt="picture not found">
+				<div class="carousel-caption d-none d-md-block">
+					<h5> آرامگاه بابا طاهر در همدان </h5>
+					<p>جاذبه گردشگری استان همدان</p>
+				</div>
+			</div>
+			<div class="carousel-item">
+				<img src="img3.jpg" class="d-block w-50 wlcomimg" alt="picture not found">
+				<div class="carousel-caption d-none d-md-block">
+					<h5>کاخ نیاوران</h5>
+					<p>جاذبه گردشگری استان تهران</p>
+				</div>
+			</div>
+		</div>
+		<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Previous</span>
+		</button>
+		<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Next</span>
+		</button>
+	</div>
+	@foreach ($provinces as $province)
+		<div class="container">
+			<div class="div1 divhover">
+				<div class="row">
+					<div class="col-sm-4"><p style="text-align: justify; margin-right:4%; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 11;  line-clamp: 11; -webkit-box-orient: vertical;">{{$province->description}}</p></div>
+					<div class="col-sm-8">
+						<?php
+						$photo_url = Storage::url('public/provinces/' . $province->photoname);
+						if ($photo_url == "/storage/provinces/") {
+						?>
+							<img src="/travel-agency.jpg" class="img-fluid img-circle2"style="margin-right:17%; width:80%; height:80%;" alt=" photo Not Set">
+							
+						<?php
+						} else {
+						?>
+								<img src="{{$photo_url}}" class="img-fluid img-circle2" alt=" photo UnAvialable" style="margin-right:17%; width:80%; height:80%;">
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<br>
+		<?php
+		}
+	?>
+	@endforeach
+
+	<br>
+	<br>
+
 </div>
 <footer>
         <div class="footerdiv1">
