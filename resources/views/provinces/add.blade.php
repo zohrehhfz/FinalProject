@@ -31,15 +31,15 @@
 	@endif
 
 	@if( $message == "1" )
-	<p> سفر با موفقیت ثبت شده است</p>
+	<p> استان با موفقیت ثبت شده است</p>
 	@endif
-	<form action="{{}}" method="post" enctype="multipart/form-data">
+	<form action="{{ route('StoreProvince') }}" method="post" enctype="multipart/form-data">
 		@csrf
 		<div>
 		<p> آپلود تصویر :</p>
 		<input type="file" name="photo" id="photo">
 		<p style="font-size:20px;"> نام: </p>
-		<input type="text" name="destination" placeholder="نام استان را وارد کنید" style="font-size:20px;">
+		<input type="text" name="name" placeholder="نام استان را وارد کنید" style="font-size:20px;">
 		<br>
 		<br>
 		</div>
