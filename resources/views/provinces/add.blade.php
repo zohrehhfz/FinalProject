@@ -35,7 +35,7 @@
 	@endif
 	<form action="{{}}" method="post" enctype="multipart/form-data">
 		@csrf
-		<div style="display:inline">
+		<div>
 		<p> آپلود تصویر :</p>
 		<input type="file" name="photo" id="photo">
 		<p style="font-size:20px;"> نام: </p>
@@ -43,7 +43,7 @@
 		<br>
 		<br>
 		</div>
-		<div style="display:inline">
+		<div >
 		<p style="font-size:20px;"> توضیحات  : </p>
 		<textarea  name="description" value=" " rows="4" style="font-size:18px;" class="w-50"> </textarea>
 		 
