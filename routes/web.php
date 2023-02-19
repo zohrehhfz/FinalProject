@@ -20,6 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/provinces/create',[ProvinceController::class, 'create'])->name('CreateProvince');
+Route::get('/provinces/store',[ProvinceController::class, 'store'])->name('StoreProvince');
 
 Route::get('/dashboard', [ProfileController::class,'redirectTo'])->middleware(['auth'])->name('dashboard');
 
