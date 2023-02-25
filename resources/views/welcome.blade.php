@@ -90,7 +90,7 @@
 						<?php
 						} else {
 						?>
-								<img src="{{$photo_url}}" class="img-fluid img-circle2" alt=" photo UnAvialable" style="margin-right:17%; width:80%; height:80%;">
+								<a href="{{route('ShowProvince',[$province])}}"><img src="{{$photo_url}}" class="img-fluid img-circle2" alt=" photo UnAvialable" style="margin-right:17%; width:80%; height:80%;"></a>
 					</div>
 				</div>
 			</div>
