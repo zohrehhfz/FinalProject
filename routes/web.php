@@ -1,10 +1,12 @@
 <?php
 
+namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+
 use App\Http\Controllers\ProfileController;
 use App\Models\Province;
 use App\Http\Controllers\ProvinceController;
-
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,8 +23,14 @@ Route::get('/', function () {
     $provinces = Province::all();
     return view('welcome',['provinces'=>$provinces]);
 });
+Route::get('/provinces/show/{province}' ,[ProvinceController::class,'show'])->name('ShowProvince');
+
+Route::middleware(['auth','EnsureItIsAdminOrGuide'])->group(function(){
+Route::get('/provinces/edit/{province}',[ProvinceController::class, 'edit'])->name('EditProvinces');
 Route::get('/provinces/create',[ProvinceController::class, 'create'])->name('CreateProvince');
 Route::post('/provinces/store',[ProvinceController::class, 'store'])->name('StoreProvince');
+
+});
 
 Route::get('/dashboard', [ProfileController::class,'redirectTo'])->middleware(['auth'])->name('dashboard');
 
