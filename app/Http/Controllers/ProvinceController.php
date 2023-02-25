@@ -66,4 +66,32 @@ class ProvinceController extends Controller
 		$message = 1;
 		return view('provinces.add', ['message' => $message]);
 	}
+
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  \App\Models\Province  $province
+	 * @return \Illuminate\Http\Response
+	 */
+	public function show(Province $province)
+	{
+		//$province->comments;
+		$url = Storage::url('public/provinces/' . $province->photoname);
+
+		if (Auth::user()) {
+			$user = Auth::user();
+			$rl = $user->role;
+
+			if (($rl == "admin") || ($rl == "guide")) {
+
+				return view('provinces.show', ['province' => $province , 'photo_url' => $url , 'role' => 1]);
+			}
+			else {
+				return view('provinces.show', ['province' => $province , 'photo_url' => $url , 'role' => 0]);
+			}
+		} 
+		else {
+			return view('provinces.show', ['province' => $province , 'photo_url' => $url , 'role' => 0]);
+		}
+	}
 }
