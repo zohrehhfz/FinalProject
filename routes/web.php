@@ -44,6 +44,17 @@ Route::middleware(['auth','EnsureItIsAdminOrGuide'])->group(function(){
     Route::get('/towns/remove/{town}',[TownController::class, 'remove'])->name('RemoveTown');
 
 });
+
+//touristAttractions
+Route::middleware(['auth','EnsureItIsAdminOrGuide'])->group(function(){
+    Route::get('/attractions/edit/{attraction}',[TouristattractionController::class, 'edit'])->name('EditAttraction');
+    Route::post('/attractions/update/{attraction}',[TouristattractionController::class, 'update'])->name('UpdateAttraction');
+    Route::get('/attractions/create',[TouristattractionController::class, 'create'])->name('CreateAttraction');
+    Route::post('/attractions/store',[TouristattractionController::class, 'store'])->name('StoreAttraction');
+    Route::get('/attractions/remove/{attraction}',[TouristattractionController::class, 'remove'])->name('RemoveAttraction');
+
+});
+
 Route::get('/towns/show/{town}' ,[TownController::class,'show'])->name('ShowTown');
 
 
