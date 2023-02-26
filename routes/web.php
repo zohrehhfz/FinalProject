@@ -41,7 +41,8 @@ Route::middleware(['auth','EnsureItIsAdminOrGuide'])->group(function(){
     Route::post('/towns/update/{town}',[TownController::class, 'update'])->name('UpdateTown');
     Route::get('/towns/create',[TownController::class, 'create'])->name('CreateTown');
     Route::post('/towns/store',[TownController::class, 'store'])->name('StoreTown');
-    
+    Route::get('/towns/remove/{town}',[TownController::class, 'remove'])->name('RemoveTown');
+
 });
 Route::get('/towns/show/{town}' ,[TownController::class,'show'])->name('ShowTown');
 
