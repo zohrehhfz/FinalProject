@@ -75,7 +75,7 @@ class TownController extends Controller
 	 * @param  \App\Models\Town  $town
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show(Town  $towne)
+	public function show(Town  $town)
 	{
 		//$town->comments;
 		$url = Storage::url('public/towns/' . $town->photoname);
