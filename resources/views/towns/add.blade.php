@@ -43,10 +43,22 @@
 		<br>
 		<br>
 		</div>
-		<div >
+
+		<div>
 		<p style="font-size:20px;"> توضیحات  : </p>
 		<textarea  name="description" value=" " rows="4" style="font-size:18px;" class="w-50"> </textarea>
 		 
+		<br>
+		<br>
+		</div>
+		<div >
+		<p style="font-size:20px;"> نام استان  : </p>
+		<input list="provincess" name="province" id="provinces">
+		<datalist id="provincess">
+		@foreach($provinces as $province)
+    	<option value="{{$province->name}}"></option>
+		@endforeach
+  		</datalist>
 		<br>
 		<br>
 		</div>
