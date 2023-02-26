@@ -182,4 +182,26 @@ class TownController extends Controller
 		return view('towns.show', ['town' => $town , 'photo_url' => $url , 'role' => 0]);
 	}
 	}
+	public function remove(Town $town)
+	{
+		Town::where('id', $town->id)->delete();
+		$province = Province::where('id', $town->province_id)->get();
+		
+		$url = Storage::url('public/provinces/' . $province[0]->photoname);
+		if (Auth::user()) {
+			$user = Auth::user();
+			$rl = $user->role;
+	
+			if (($rl == "admin") || ($rl == "guide")) {
+	
+				return view('provinces.show', ['province' => $province[0] , 'photo_url' => $url , 'role' => 1]);
+			}
+			else {
+				return view('provinces.show', ['province' => $province[0] , 'photo_url' => $url , 'role' => 0]);
+			}
+		} 
+		else {
+			return view('provinces.show', ['province' => $province[0] , 'photo_url' => $url , 'role' => 0]);
+		}	
+	}
 }
