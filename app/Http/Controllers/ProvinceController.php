@@ -76,6 +76,7 @@ class ProvinceController extends Controller
 	public function show(Province $province)
 	{
 		//$province->comments;
+		$province->towns;
 		$url = Storage::url('public/provinces/' . $province->photoname);
 
 		if (Auth::user()) {
