@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use App\Models\Province;
+use Illuminate\Support\Facades\Redirect;
+
 class ProvinceController extends Controller
 {
     /**
@@ -170,5 +172,10 @@ class ProvinceController extends Controller
 		return view('provinces.show', ['province' => $province , 'photo_url' => $url , 'role' => 0]);
 	}
 	}
-
+	public function remove(Province $province)
+	{
+		Province::where('id', $province->id)->delete();
+		return Redirect::route('welcome');
+		
+	}
 }
