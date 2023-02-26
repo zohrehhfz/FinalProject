@@ -15,4 +15,9 @@ class Province extends Model
         'photoname',
         'orginalphotoname'
     ];
+
+    public function towns()
+	{
+		return $this->hasMany('App\Models\Town');
+	}
 }
