@@ -23,7 +23,6 @@ Route::get('/', function () {
     $provinces = Province::all();
     return view('welcome',['provinces'=>$provinces]);
 });
-Route::get('/provinces/show/{province}' ,[ProvinceController::class,'show'])->name('ShowProvince');
 
 //province
 Route::middleware(['auth','EnsureItIsAdminOrGuide'])->group(function(){
@@ -31,8 +30,9 @@ Route::get('/provinces/edit/{province}',[ProvinceController::class, 'edit'])->na
 Route::post('/provinces/update/{province}',[ProvinceController::class, 'update'])->name('UpdateProvinces');
 Route::get('/provinces/create',[ProvinceController::class, 'create'])->name('CreateProvince');
 Route::post('/provinces/store',[ProvinceController::class, 'store'])->name('StoreProvince');
-
 });
+Route::get('/provinces/show/{province}' ,[ProvinceController::class,'show'])->name('ShowProvince');
+
 
 //town
 Route::middleware(['auth','EnsureItIsAdminOrGuide'])->group(function(){
@@ -42,6 +42,8 @@ Route::middleware(['auth','EnsureItIsAdminOrGuide'])->group(function(){
     Route::post('/towns/store',[TownController::class, 'store'])->name('StoreTown');
     
 });
+Route::get('/towns/show/{town}' ,[TownController::class,'show'])->name('ShowTown');
+
 
 Route::get('/dashboard', [ProfileController::class,'redirectTo'])->middleware(['auth'])->name('dashboard');
 
