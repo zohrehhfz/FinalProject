@@ -11,6 +11,9 @@ class Town extends Model
 	protected $table = 'towns';
 	protected $fillable = [
         'name',
-        'province_id'
+        'province_id',
+        'description',
+        'photoname',
+        'orginalphotoname'
     ];
 }
