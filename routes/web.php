@@ -25,13 +25,22 @@ Route::get('/', function () {
 });
 Route::get('/provinces/show/{province}' ,[ProvinceController::class,'show'])->name('ShowProvince');
 
+//province
 Route::middleware(['auth','EnsureItIsAdminOrGuide'])->group(function(){
 Route::get('/provinces/edit/{province}',[ProvinceController::class, 'edit'])->name('EditProvinces');
 Route::post('/provinces/update/{province}',[ProvinceController::class, 'update'])->name('UpdateProvinces');
-
 Route::get('/provinces/create',[ProvinceController::class, 'create'])->name('CreateProvince');
 Route::post('/provinces/store',[ProvinceController::class, 'store'])->name('StoreProvince');
 
+});
+
+//town
+Route::middleware(['auth','EnsureItIsAdminOrGuide'])->group(function(){
+    Route::get('/towns/edit/{town}',[TownController::class, 'edit'])->name('EditTown');
+    Route::post('/towns/update/{town}',[TownController::class, 'update'])->name('UpdateTown');
+    Route::get('/towns/create',[TownController::class, 'create'])->name('CreateTown');
+    Route::post('/towns/store',[TownController::class, 'store'])->name('StoreTown');
+    
 });
 
 Route::get('/dashboard', [ProfileController::class,'redirectTo'])->middleware(['auth'])->name('dashboard');
