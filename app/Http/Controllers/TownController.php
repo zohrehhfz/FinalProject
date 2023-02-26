@@ -150,6 +150,7 @@ class TownController extends Controller
 		"name" => $request->name,
 		"description" => $request->description,
 		"photoname" => $newphotofilename,
+        "province_id" => 1,
 		"orginalphotoname" => $photofilename
 	));
 	
