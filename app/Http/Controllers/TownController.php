@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use App\Models\Town;
+use App\Models\Province;
 
 class TownController extends Controller
 {
@@ -19,7 +20,8 @@ class TownController extends Controller
 	public function create()
 	{
 		$message = 0;
-		return view('towns.add', ['message' => $message]);
+		$provinces = Province::all();
+		return view('towns.add', ['message' => $message , 'provinces' => $provinces]);
 	}
 	/**
 	 * Store a newly created resource in storage.
@@ -33,12 +35,15 @@ class TownController extends Controller
 		$request->validate([
 			'name' => 'required|string|max:255',
 			'description' => 'required|string',
+			'province' => 'required|string',
 			'photo' => ['required','mimes:jpg,png,jpeg,gif,svg', 'max:2048']
 		]);
 		$t = Town::all()->where('name', $request->name)->count();
 		if ($t > 0) {
 			return redirect()->back()->withErrors(['error' => 'این شهر قبلا ثبت شده است']);
 		}
+
+		$p = Province::all()->where('name', $request->province)->pluck('id');
 		
 		$newphotofilename = "null";
 		$photofilename = "null";
@@ -61,12 +66,13 @@ class TownController extends Controller
 		"name" => $request->name,
 		"description" => $request->description,
 		"photoname" => $newphotofilename,
-        "province_id" => 1,
+        "province_id" => $p[0],
 		"orginalphotoname" => $photofilename
 	]);
 	
 		$message = 1;
-		return view('towns.add', ['message' => $message]);
+		$provinces = Province::all();
+		return view('towns.add', ['message' => $message , 'provinces' => $provinces]);
 	}
 
 	/**
@@ -109,7 +115,8 @@ class TownController extends Controller
 		$rl = $user->role;
 		
 		if (($rl == "admin") || ($rl == "guide")) {
-			return view('towns.edit', ['town' => $town]);
+			$provinces = Province::all();
+			return view('towns.edit', ['town' => $town , 'provinces' => $provinces]);
 		} else
 			return redirect()->back()->withErrors(['error' => 'شما اجازه تغییر اطلاعات این استان را ندارید']);
 	}
@@ -125,9 +132,12 @@ class TownController extends Controller
 		$request->validate([
 			'name' => 'required|string|max:255',
 			'description' => 'required|string',
+			'province' => 'required|string',
 			'photo' => ['required','mimes:jpg,png,jpeg,gif,svg', 'max:2048']
 		]);
 		
+		$p = Province::all()->where('name', $request->province)->pluck('id');
+
 		$newphotofilename = "null";
 		$photofilename = "null";
 		if ($request->photo != null) {
@@ -150,7 +160,7 @@ class TownController extends Controller
 		"name" => $request->name,
 		"description" => $request->description,
 		"photoname" => $newphotofilename,
-        "province_id" => 1,
+        "province_id" => $p[0],
 		"orginalphotoname" => $photofilename
 	));
 	
