@@ -22,7 +22,7 @@ use App\Http\Controllers\ProvinceController;
 Route::get('/', function () {
     $provinces = Province::all();
     return view('welcome',['provinces'=>$provinces]);
-});
+})->name('welcome');
 
 //province
 Route::middleware(['auth','EnsureItIsAdminOrGuide'])->group(function(){
@@ -30,6 +30,7 @@ Route::get('/provinces/edit/{province}',[ProvinceController::class, 'edit'])->na
 Route::post('/provinces/update/{province}',[ProvinceController::class, 'update'])->name('UpdateProvinces');
 Route::get('/provinces/create',[ProvinceController::class, 'create'])->name('CreateProvince');
 Route::post('/provinces/store',[ProvinceController::class, 'store'])->name('StoreProvince');
+Route::get('/provinces/remove/{province}',[ProvinceController::class, 'remove'])->name('RemoveProvinces');
 });
 Route::get('/provinces/show/{province}' ,[ProvinceController::class,'show'])->name('ShowProvince');
 
