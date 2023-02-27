@@ -61,7 +61,7 @@ Route::middleware(['auth','admin'])->group(function(){
 	Route::get('/provinceguides/unactive/{role}',[UserController::class,'unactive'])->name('unactiveguide');	
 	Route::get('/provinceguides/seecertificate/{user}',[UserController::class, 'AdminSeeCertificate'])->name('AdminSeeCertificate');
 	Route::get('/provinceguides/show/users',[UserController::class,'ShowUsers'])->name('ShowUsers');
-	Route::get('/provinceguides/show/leaders',[UserController::class,'ShowLeaders'])->name('ShowGuides');
+	Route::get('/provinceguides/show/leaders',[UserController::class,'ShowGuides'])->name('ShowGuides');
 	//Route::get('/travel/delete/comment/{comment}',[CommentController::class, 'DeleteComment'])->name('DeleteComment');
 });
 Route::get('/attractions/show/{attraction}' ,[TouristattractionController::class,'show'])->name('ShowAttraction');
