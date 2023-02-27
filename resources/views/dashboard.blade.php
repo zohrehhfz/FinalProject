@@ -3,11 +3,7 @@
 @section('content')
 <nav class="navbar navbar-expand-sm navbar-dark sticky-top">
 	<div class="container-fluid">
-
 		@if (Route::has('login'))
-
-		
-
 		@auth
 		
 		<form method="POST" action="{{ route('logout') }}">
@@ -36,8 +32,7 @@
 	<div class="py-12">
 		<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 			<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-				<div class="p-6 bg-white border-b border-gray-200" dir=rtl>
-					
+				<div class="p-6 bg-white border-b border-gray-200" dir=rtl>			
 					@if($photo_url == "/storage/files/null")
 					<img src="/user.gif" class="img-fluid img-circle" alt="profile photo Not Set">
 					@else
@@ -60,8 +55,15 @@
 							print $v->formatJalaliDate(); ?>
 							ایجاد شده است
 						</p>
-
-						<button id="submitbutton" style="margin:auto;"><a href="{{}}" style="color:white; text-decoration: none; "> به روز رسانی حساب</a></button>
+						<p> بیوگرافی :
+							{{$user->bio}}
+						</p>
+						<br>
+		    <br>
+            <hr>
+            <br>
+		    <br>
+						<button id="submitbutton" style="margin:auto;"><a href="{{ route('EditUserGuideInfo') }}" style="color:white; text-decoration: none; "> به روز رسانی حساب</a></button>
 
 					</div>
 				</div>
