@@ -22,11 +22,11 @@ class UserController extends Controller
     public function update(Request $request)
 	{
 		$user = Auth::user();
+		
 		$request->validate([
 			'name' => ['required', 'string', 'max:255'],
 			'email' => ['required', 'string', 'email', 'max:255'],
 			'phone' => ['required', 'string', 'min:11', 'max:13'],
-			'bio' => ['required', 'string'],
 			'photo' => ['mimes:jpg,png,jpeg,gif,svg', 'max:2048'],
 			'certificate' => ['mimes:jpg,png,jpeg,gif,svg', 'max:2048'],
 		]);
@@ -54,6 +54,7 @@ class UserController extends Controller
         $guide = 0;
 		$newcertificatefilename = "null";
 		$certificatefilename = "null";
+		
 		if ($request->certificate != null) {
             $guide = 1;
 			$certificatefile = $request->file('certificate');
@@ -90,6 +91,7 @@ class UserController extends Controller
 		));
 		$user = User::find(Auth::user()->id);
 		$url = Storage::url('public/files/' . $user->photoname);
+
 		return view('dashboard', ['user' => $user, 'photo_url' => $url]);
 	}
 
@@ -98,5 +100,10 @@ class UserController extends Controller
 		$users = User::all();
 		return view('panels.users', ['users' => $users]);
 
+	}
+	public function ShowGuides()
+	{
+		$guides = User::all()->where('role', '=', 'guide')->load('guidepersons');
+		return view('panels.guides', ['guides' => $guides]);
 	}
 }
