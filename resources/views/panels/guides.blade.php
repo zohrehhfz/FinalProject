@@ -17,7 +17,7 @@
                                     <th scope="col">نام</th>
                                     <th scope="col">شماره تماس</th>
                                     <th scope="col">ایمیل</th>
-                                    <th scope="col">فعال/غیر فعال کردن</th>
+                                    <th scope="col">وضعیت </th>
                                     <th scope="col">نمایش مدرک</th>
                                 </tr>
                             </thead>
@@ -44,14 +44,14 @@
                                     <td>{{$guide->email}}</td>
                                     <td>
                                         @if($guide->active == 1)
-                                        <a href="{{route('unactiveguide',[$guide])}}" style="hover:text-red-700; color:red;"><button >غیر فعال کردن</button></a>
+                                        <a href="{{route('unactiveguide',[$guide])}}" style="hover:text-red-700; color:green;"><button > فعال </button></a>
                                         @else
-                                        <a href="{{route('activeguide',[$guide])}}" style="hover:text-gray-700; color:green;"><button >فعال کردن</button></a>
+                                        <a href="{{route('activeguide',[$guide])}}" style="hover:text-gray-700; color:red;"><button >غیر فعال </button></a>
                                         @endif
                                     </td>
                                     <td>
                                         @if($guide->guidepersons->certificatename != NULL)
-                                        <button><a href="{{route('AdminSeeCertificate',[$guide])}}" style="color:green; text-decoration: none; hover:text-gray-700"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;نمایش مدرک <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-award-fill mypen" viewBox="0 0 16 16">
+                                        <button><a href="{{route('ShowCertificate',[$guide])}}" style="color:green; text-decoration: none; hover:text-gray-700"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;نمایش مدرک <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-award-fill mypen" viewBox="0 0 16 16">
                                                     <path d="m8 0 1.669.864 1.858.282.842 1.68 1.337 1.32L13.4 6l.306 1.854-1.337 1.32-.842 1.68-1.858.282L8 12l-1.669-.864-1.858-.282-.842-1.68-1.337-1.32L2.6 6l-.306-1.854 1.337-1.32.842-1.68L6.331.864 8 0z" />
                                                     <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z" />
                                                 </svg></a></button>
