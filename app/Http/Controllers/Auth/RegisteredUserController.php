@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Guideperson;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -80,7 +81,13 @@ class RegisteredUserController extends Controller
              'active' => $number,
             'password' => Hash::make($request->password),
         ]);
-        
+        if($request->role == "guide")
+		{
+            Guideperson::create([
+                'user_id' => $user->id,
+            ]);
+				
+        }
         event(new Registered($user));
 
         Auth::login($user);
