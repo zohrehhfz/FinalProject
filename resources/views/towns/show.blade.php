@@ -42,7 +42,7 @@
 <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
 	<div class="div1" style="width:70%; margin:auto;">
 		<br>
-		@if($photo_url == "/storage/provinces/")
+		@if($photo_url == "/storage/towns/")
 		<figure>
 			<img src="/travel-agency.jpg" class="img-fluid" style="margin:auto; width:25%; height:25%;" alt="profile photo Not Set">
 			<figcaption style="font-size: 14px;">تصویر یافت نشد</figcaption>
