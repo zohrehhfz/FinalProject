@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use App\Models\Province;
 
 class RegisteredUserController extends Controller
 {
@@ -23,7 +24,8 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        return view('auth.register');
+        $provinces = Province::all();
+        return view('auth.register' , ['provinces' => $provinces]);
     }
 
     /**
