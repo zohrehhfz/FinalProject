@@ -171,4 +171,29 @@ class TouristattractionController extends Controller
 		return view('attractions.show', ['attraction' => $attraction[0] , 'photo_url' => $url , 'role' => 0]);
 	}
 	}
+
+
+	public function remove(Touristattraction  $attraction)
+	{
+		Touristattraction::where('id', $attraction->id)->delete();
+		$town = Town::where('id', $attraction->town_id)->get();
+		
+		$url = Storage::url('public/towns/' . $town[0]->photoname);
+
+		if (Auth::user()) {
+			$user = Auth::user();
+			$rl = $user->role;
+	
+			if (($rl == "admin") || ($rl == "guide")) {
+	
+				return view('towns.show', ['town' => $town[0] , 'photo_url' => $url , 'role' => 1]);
+			}
+			else {
+				return view('towns.show', ['town' => $town[0] , 'photo_url' => $url , 'role' => 0]);
+			}
+		} 
+		else {
+			return view('towns.show', ['town' => $town[0] , 'photo_url' => $url , 'role' => 0]);
+		}	
+	}
 }
