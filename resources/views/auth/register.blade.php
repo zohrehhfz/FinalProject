@@ -31,6 +31,17 @@
         </div>
 
         <div class="mt-4">
+		<x-input-label style="font-size:20px;" /> استان محل زندگی : 
+		<x-text-input list="provinces" name="provincename"   style="margin-left: 105px;" />
+		<datalist id="provinces">
+		@foreach($provinces as $province)
+    	<option value="{{$province->name}}"></option>
+		@endforeach
+  		</datalist>
+		<br>
+		<br>
+		</div>
+        <div class="mt-4">
 				
 				<input type="radio" id="user" name="role" value="user">
 				 <label for="html">کاربر</label>
