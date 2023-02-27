@@ -93,4 +93,10 @@ class UserController extends Controller
 		return view('dashboard', ['user' => $user, 'photo_url' => $url]);
 	}
 
+	public function ShowUsers()
+	{
+		$users = User::all();
+		return view('panels.users', ['users' => $users]);
+
+	}
 }
