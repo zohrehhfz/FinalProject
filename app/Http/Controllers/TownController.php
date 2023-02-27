@@ -84,6 +84,7 @@ class TownController extends Controller
 	public function show(Town  $town)
 	{
 		//$town->comments;
+		$town->attractions;
 		$url = Storage::url('public/towns/' . $town->photoname);
 
 		if (Auth::user()) {
