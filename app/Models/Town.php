@@ -16,4 +16,9 @@ class Town extends Model
         'photoname',
         'orginalphotoname'
     ];
+
+    public function attractions()
+	{
+		return $this->hasMany('App\Models\Touristattraction');
+	}
 }
