@@ -106,4 +106,24 @@ class UserController extends Controller
 		$guides = User::all()->where('role', '=', 'guide')->load('guidepersons');
 		return view('panels.guides', ['guides' => $guides]);
 	}
+	public function certificate(User $user)
+	{
+		$name = $user->guidepersons()->first()->orginalcertificatename;
+		return Storage::download('public/certificates/'. $user->guidepersons()->first()->certificatename,$name);
+	
+	}
+	public function active(User $user)
+    {
+		$user->Update(["active"=>1]);
+        return redirect()->back();
+        
+    }
+	
+	public function unactive(User $user)
+    {
+		$user->Update(["active"=>0]);
+		
+        return redirect()->back();
+        
+    }
 }
