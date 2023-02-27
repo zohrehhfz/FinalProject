@@ -18,8 +18,11 @@ class ProfileController extends Controller
 		$user = Auth::user();
 
 		$url = Storage::url('public/files/' . $user->photoname);
-		
-		return view('dashboard', ['user' => $user, 'photo_url' => $url]);
+        if (Auth::user()->role == 'admin') {
+			return view('/panels/admin', ['user' => $user, 'photo_url' => $url]);
+		} else {
+			return view('dashboard', ['user' => $user, 'photo_url' => $url]);
+		}
     }
     /**
      * Display the user's profile form.
