@@ -57,8 +57,8 @@ Route::middleware(['auth','EnsureItIsAdminOrGuide'])->group(function(){
 
 //admin
 Route::middleware(['auth','admin'])->group(function(){
-	Route::get('/provinceguides/active/{role}',[UserController::class,'active'])->name('activeguide');
-	Route::get('/provinceguides/unactive/{role}',[UserController::class,'unactive'])->name('unactiveguide');	
+	Route::get('/provinceguides/active/{user}',[UserController::class,'active'])->name('activeguide');
+	Route::get('/provinceguides/unactive/{user}',[UserController::class,'unactive'])->name('unactiveguide');	
 	Route::get('/provinceguides/seecertificate/{user}',[UserController::class, 'AdminSeeCertificate'])->name('AdminSeeCertificate');
 	Route::get('/provinceguides/show/users',[UserController::class,'ShowUsers'])->name('ShowUsers');
 	Route::get('/provinceguides/show/leaders',[UserController::class,'ShowGuides'])->name('ShowGuides');
@@ -74,7 +74,7 @@ Route::get('/dashboard', [ProfileController::class,'redirectTo'])->middleware(['
 Route::middleware('auth')->group(function () {
     Route::get('/users/changeinfo',[UserController::class, 'edit'])->name('EditUserGuideInfo');
     Route::post('/users/updateinfo',[UserController::class, 'update'])->name('UpdateUserGuideInfo');
-    Route::get('/users/certificate',[UserController::class, 'certificate'])->name('ShowCertificate');
+    Route::get('/users/certificate/{user}',[UserController::class, 'certificate'])->name('ShowCertificate');
     //Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     //Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
    // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
