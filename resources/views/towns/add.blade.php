@@ -31,7 +31,7 @@
 	@endif
 
 	@if( $message == "1" )
-	<p> استان با موفقیت ثبت شده است</p>
+	<p style="color:green"> شهر با موفقیت ثبت شده است</p>
 	@endif
 	<form action="{{ route('StoreTown') }}" method="post" enctype="multipart/form-data">
 		@csrf
