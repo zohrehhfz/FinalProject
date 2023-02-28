@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Province;
 
 class User extends Authenticatable
 {
@@ -21,7 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'address',
+        'province_id',
         'photoname',
         'orginalphotoname',
         'phone',
@@ -52,5 +53,9 @@ class User extends Authenticatable
     public function guidepersons()
 	{
 		return $this->hasOne('App\Models\Guideperson');
+	}
+    public function province()
+	{
+		return $this->belongsTo('App\Models\Province');
 	}
 }
