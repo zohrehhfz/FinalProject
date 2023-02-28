@@ -46,10 +46,11 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'photo' => ['sometimes' ,'mimes:jpg,png,jpeg,gif,svg','max:2048'],
             'phone' => ['required', 'string','min:11' ,'max:13'],
+            'provincename' => ['required','string'],
             'role' => 'required' 
 
         ]);
-        
+        $p = Province::all()->where('name', $request->provincename)->pluck('id');
 
         $newphotofilename = "null";
 		$photofilename = "null";
@@ -76,6 +77,7 @@ class RegisteredUserController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'province_id' => $p[0],
             'photoname' => $newphotofilename ,
 			'orginalphotoname' => $photofilename ,
             'phone' => $request->phone,
