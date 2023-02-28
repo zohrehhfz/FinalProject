@@ -11,13 +11,15 @@ use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Guideperson;
+use App\Models\Province;
 
 class UserController extends Controller
 {
     public function edit()
 	{
 		$user = Auth::user();
-		return view('panels.edit', ['user' => $user]);
+		$provinces = Province::all();
+		return view('panels.edit', ['user' => $user , 'provinces' => $provinces]);
 	}  
     public function update(Request $request)
 	{
@@ -29,8 +31,9 @@ class UserController extends Controller
 			'phone' => ['required', 'string', 'min:11', 'max:13'],
 			'photo' => ['mimes:jpg,png,jpeg,gif,svg', 'max:2048'],
 			'certificate' => ['mimes:jpg,png,jpeg,gif,svg', 'max:2048'],
+			'provincename' => ['required','string'],
 		]);
-
+		
 		$newphotofilename = "null";
 		$photofilename = "null";
 		if ($request->photo != null) {
@@ -83,16 +86,20 @@ class UserController extends Controller
 			));
 		}
 		
+		$p = Province::all()->where('name', $request->provincename)->pluck('id');
+
 		DB::table('users')->where('id', $user->id)->update(array(
 			'name' => $request->name,
 			'email' => $request->email,
 			'phone' => $request->phone,
+			'province_id' => $p[0],
 			'bio' => $request->bio,
 		));
 		$user = User::find(Auth::user()->id);
+		$user_province = $user->province->name;
 		$url = Storage::url('public/files/' . $user->photoname);
 
-		return view('dashboard', ['user' => $user, 'photo_url' => $url]);
+		return view('dashboard', ['user' => $user, 'photo_url' => $url , 'user_province'=>$user_province]);
 	}
 
 	public function ShowUsers()
