@@ -11,17 +11,19 @@ use Illuminate\View\View;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
+use App\Models\Province;
 class ProfileController extends Controller
 {
     public function redirectTo()
 	{
 		$user = Auth::user();
-
+        $user_province = $user->province->name;
+        
 		$url = Storage::url('public/files/' . $user->photoname);
         if (Auth::user()->role == 'admin') {
-			return view('/panels/admin', ['user' => $user, 'photo_url' => $url]);
+			return view('/panels/admin', ['user' => $user, 'photo_url' => $url , 'user_province'=>$user_province]);
 		} else {
-			return view('dashboard', ['user' => $user, 'photo_url' => $url]);
+			return view('dashboard', ['user' => $user, 'photo_url' => $url , 'user_province'=>$user_province]);
 		}
     }
     /**
