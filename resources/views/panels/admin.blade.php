@@ -35,10 +35,10 @@
 				<path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
 			</svg>نمایش راهنماها</a>
 		
-		<form method="POST" action="{{ route('logout') }}" style="margin-right: -26%;">
+			<form method="POST" action="{{ route('logout') }}" style="margin-right: -26%;">
 			@csrf
 			<a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                this.closest('form').submit();" class="navbar-brand hover:text-gray-700"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16" style="display:inline;>
+                                                this.closest('form').submit();" class="navbar-brand hover:text-gray-700"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16" style="display:inline;">
 					<path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z" />
 					<path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" />
 				</svg> خروج از حساب </a>
@@ -88,7 +88,9 @@
 						<p> شماره تماس :
 							{{$user->phone}}
 						</p>
-						
+						<p> استان محل سکونت :
+							{{$user_province}}
+						</p>
 						<p> حساب در تاریخ
 							<?php $v = new Verta($user->created_at);
 							print $v->formatJalaliDate(); ?>
