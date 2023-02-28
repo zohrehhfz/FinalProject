@@ -89,7 +89,9 @@
 						<p> شماره تماس :
 							{{$user->phone}}
 						</p>
-						
+						<p> استان محل سکونت :
+							{{$user_province}}
+						</p>
 						<p> حساب در تاریخ
 							<?php $v = new Verta($user->created_at);
 							print $v->formatJalaliDate(); ?>
