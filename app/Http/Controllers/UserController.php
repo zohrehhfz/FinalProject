@@ -99,7 +99,7 @@ class UserController extends Controller
 		$user_province = $user->province->name;
 		$url = Storage::url('public/files/' . $user->photoname);
 
-		return view('dashboard', ['user' => $user, 'photo_url' => $url , 'user_province'=>$user_province]);
+		return redirect()->route('dashboard');
 	}
 
 	public function ShowUsers()
