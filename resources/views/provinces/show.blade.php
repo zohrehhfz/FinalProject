@@ -53,14 +53,48 @@
 		@endif
 		<br>
 		<br>
-		<p> نام استان : {{$province->name}}</p>
+		<h4> نام استان : {{$province->name}}</h4>
 		<p> {{$province->description}}</p>
 		<br>
 		<br>
-		<p> نام شهرهای استان {{$province->name}}</p>
-		@foreach($province->towns as $town)
-		<a style="text-decoration:none"  href="{{route('ShowTown',[$town])}}"><p> نام شهر : {{$town->name}}</p></a>
-		@endforeach
+
+		
+		<div class="container">
+			<div class="" style="margin:auto">
+				<div class="row">
+				@foreach ($province->towns as $town)
+					<div class="col">
+					<h5 style="text-align: justify; margin-right:4%;">
+					{{$town->name}}
+					</h5>				
+					<p style="text-align: justify; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3;  line-clamp: 3; -webkit-box-orient: vertical;">
+					{{$town->description}}
+					</p>
+				</div>
+					<div class="col">
+						<?php
+						$photo_url = Storage::url('public/towns/' . $town->photoname);
+						if ($photo_url == "/storage/provinces/") {
+						?>
+							<img src="/travel-agency.jpg" class="img-fluid img-circle2"style="margin-right:17%; width:80%; height:80%;" alt=" photo Not Set">
+							
+						<?php
+						} else {
+						?>
+								<a href="{{route('ShowTown',[$town])}}"><img src="{{$photo_url}}" class="img-fluid img-circle2" alt=" photo UnAvialable" style="margin-right:5%; width:100%; height:100%;"></a>
+								<?php
+								}
+								?>
+					</div>
+					@endforeach
+				</div>
+			</div>
+		</div>
+		<br>
+		<br>
+		
+	
+
 
 		<p>  راهنماهای استان {{$province->name}}</p>
 		@foreach($guidepersons as $guideperson)
