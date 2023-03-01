@@ -155,7 +155,7 @@ class TownController extends Controller
 			$newphotofilename
 		);
 	}
-
+		
 	DB::table('towns')->where('id', $town->id)->update(array(
 
 		"name" => $request->name,
@@ -165,9 +165,9 @@ class TownController extends Controller
 		"orginalphotoname" => $photofilename
 	));
 
-	$town = Town::all()->where('id',$town->id);
+	$t = Town::all()->where('id',$town->id);
 	
-	$url = Storage::url('public/towns/' . $town[0]->photoname);
+	$url = Storage::url('public/towns/' . $t[1]->photoname);
 
 	if (Auth::user()) {
 		$user = Auth::user();
@@ -175,14 +175,14 @@ class TownController extends Controller
 
 		if (($rl == "admin") || ($rl == "guide")) {
 
-			return view('towns.show', ['town' => $town[0] , 'photo_url' => $url , 'role' => 1]);
+			return view('towns.show', ['town' => $t[1] , 'photo_url' => $url , 'role' => 1]);
 		}
 		else {
-			return view('towns.show', ['town' => $town[0] , 'photo_url' => $url , 'role' => 0]);
+			return view('towns.show', ['town' => $t[1] , 'photo_url' => $url , 'role' => 0]);
 		}
 	} 
 	else {
-		return view('towns.show', ['town' => $town[0] , 'photo_url' => $url , 'role' => 0]);
+		return view('towns.show', ['town' => $t[1] , 'photo_url' => $url , 'role' => 0]);
 	}
 	}
 	
