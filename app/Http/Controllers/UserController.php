@@ -133,4 +133,10 @@ class UserController extends Controller
         return redirect()->back();
         
     }
+	public function ShowGuide(User $user)
+	{
+		$user_province = $user->province->name;
+		$url = Storage::url('public/files/' . $user->photoname);
+		return view('panels.showGuide', ['user' => $user , 'photo_url' => $url , 'user_province'=>$user_province]);
+	}
 }
