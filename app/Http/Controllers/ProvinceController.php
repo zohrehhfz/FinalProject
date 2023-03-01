@@ -157,7 +157,7 @@ class ProvinceController extends Controller
 	));
 	
 	$province = Province::all()->where('id', $province->id);
-	$guidepersons = User::all()->where('role','guide')->where('province_id',$province->id);
+	$guidepersons = User::all()->where('role','guide')->where('province_id',$province[0]->id);
 	$url = Storage::url('public/provinces/' . $province[0]->photoname);
 
 	if (Auth::user()) {
