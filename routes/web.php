@@ -66,9 +66,7 @@ Route::middleware(['auth','admin'])->group(function(){
 });
 Route::get('/attractions/show/{attraction}' ,[TouristattractionController::class,'show'])->name('ShowAttraction');
 
-
-
-
+Route::get('/provinceguides/{user}', [UserController::class,'ShowGuide'])->name('ShowGuide');
 Route::get('/dashboard', [ProfileController::class,'redirectTo'])->middleware(['auth'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
