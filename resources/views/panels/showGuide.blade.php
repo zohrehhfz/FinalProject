@@ -4,10 +4,11 @@
 <nav class="navbar navbar-expand-sm navbar-dark sticky-top">
 	<div class="container-fluid">
 		@if (Route::has('login'))
-		@auth
-        <a href="{{ route('welcome') }}" class="navbar-brand"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16" style="display:inline;">
+		<a href="{{ route('welcome') }}" class="navbar-brand"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16" style="display:inline;">
   			<path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5Z"/>
 			</svg> خانه </a>
+		@auth
+       
 		@endauth
 	</div>
 	@endif
@@ -38,6 +39,25 @@
 								</svg></a></button>
 
 						@endif
+						@if($message != 2)
+						<form action="{{ route('followUser') }}" method="post" style="display:inline">
+						@csrf
+						<?php $v = $user->id; ?>
+						<input type="hidden" id="user_id" name="user_id" value ={{$v}}>
+
+						<button id="submitbutton" type="submit" style="display:inline; background-color:#289e9e; color:white; margin:auto; margin-bottom:2%;;"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16" style="display:inline;">
+  						<path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+  						<path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+						</svg>&nbsp;&nbsp; دنبال کردن</button>
+						</form>
+						@else
+						<button id="submitbutton" type="submit" style="display:inline; background-color:#289e9e; color:white; margin:auto; margin-bottom:2%;;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-dots-fill" viewBox="0 0 16 16" style="display:inline;">
+  						<path d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+						</svg>&nbsp;&nbsp; صفحه چت </button>
+						@endif
+						
+						
+
 						<p>نام :
 							{{$user->name}}
 						</p>
@@ -55,6 +75,8 @@
             <hr>
             <br>
 		    <br>
+			
+
 					</div>
 				</div>
 				
