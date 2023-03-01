@@ -6,6 +6,9 @@
 		<ul class="navbar-nav">
 			<li class="nav-item">
 				@if (Route::has('login'))
+				<a href="{{ route('welcome') }}" class="navbar-brand"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16" style="display:inline;">
+  			<path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5Z"/>
+			</svg> خانه </a>
 				@auth
 				@if(Auth::user()->role == "admin")
 				<a href="{{ route('CreateProvince') }}" class="navbar-brand"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
@@ -63,7 +66,7 @@
 			<div class="" style="margin:auto">
 				<div class="row">
 				@foreach ($province->towns as $town)
-					<div class="col">
+					<div class="col-3">
 					<h5 style="text-align: justify; margin-right:4%;">
 					{{$town->name}}
 					</h5>				
@@ -71,17 +74,17 @@
 					{{$town->description}}
 					</p>
 				</div>
-					<div class="col">
+					<div class="col-3">
 						<?php
 						$photo_url = Storage::url('public/towns/' . $town->photoname);
 						if ($photo_url == "/storage/provinces/") {
 						?>
-							<img src="/travel-agency.jpg" class="img-fluid img-circle2"style="margin-right:17%; width:80%; height:80%;" alt=" photo Not Set">
+							<img src="/travel-agency.jpg" class="img-fluid img-circle2"style="margin-right:12%; width:80%; height:80%;" alt=" photo Not Set">
 							
 						<?php
 						} else {
 						?>
-								<a href="{{route('ShowTown',[$town])}}"><img src="{{$photo_url}}" class="img-fluid img-circle2" alt=" photo UnAvialable" style="margin-right:5%; width:100%; height:100%;"></a>
+								<a href="{{route('ShowTown',[$town])}}"><img src="{{$photo_url}}" class="img-fluid img-circle2" alt=" photo UnAvialable" style="margin-right:0%; width:100%; height:100%;"></a>
 								<?php
 								}
 								?>
