@@ -58,4 +58,8 @@ class User extends Authenticatable
 	{
 		return $this->belongsTo('App\Models\Province');
 	}
+    public function following()
+    {
+        return $this->belongsToMany('App\Models\Guideperson');
+    }
 }
