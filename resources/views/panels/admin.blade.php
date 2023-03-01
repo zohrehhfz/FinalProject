@@ -96,9 +96,20 @@
 							print $v->formatJalaliDate(); ?>
 							ایجاد شده است
 						</p>
+						<p> بیوگرافی :
+							{{$user->bio}}
+						</p>
+						<br>
+		    <br>
+            <hr>
+            <br>
+		    <br>
+						<button id="submitbutton" style="background-color:#7BD369; margin:auto; margin-bottom:2%;;"><a href="{{ route('EditUserGuideInfo') }}" style="color:white; text-decoration: none; "> به روز رسانی حساب</a></button>
+
 					</div>
 				</div>
-				
+
+
 			</div>
 		</div>
 	</div>
