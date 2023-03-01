@@ -87,7 +87,11 @@
 		<div class="container">
 			<div class="div1 divhover">
 				<div class="row">
-					<div class="col-sm-4"><p style="text-align: justify; margin-right:4%; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 11;  line-clamp: 11; -webkit-box-orient: vertical;">{{$province->description}}</p></div>
+					<div class="col-sm-4">
+					<p style="text-align: justify; margin-right:4%; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 11;  line-clamp: 11; -webkit-box-orient: vertical;">
+					{{$province->description}}
+				</p>
+				</div>
 					<div class="col-sm-8">
 						<?php
 						$photo_url = Storage::url('public/provinces/' . $province->photoname);
