@@ -1,5 +1,5 @@
 @extends('layouts.my_layout')
-@section('title', 'ایجاد حساب ')
+@section('title', 'ورود به حساب ')
 @section('content')
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
