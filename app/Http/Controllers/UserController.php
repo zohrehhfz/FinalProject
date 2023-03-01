@@ -137,6 +137,31 @@ class UserController extends Controller
 	{
 		$user_province = $user->province->name;
 		$url = Storage::url('public/files/' . $user->photoname);
-		return view('panels.showGuide', ['user' => $user , 'photo_url' => $url , 'user_province'=>$user_province]);
+
+		if (Auth::user()) {
+			$u = Auth::user();	
+			$user_following = $u->following;
+			$count = $user_following->where('user_id', $user->id)->count();
+			if($count == 0)
+			return view('panels.showGuide', ['user' => $user , 'photo_url' => $url , 'user_province'=>$user_province, 'message' => 0]);
+			else
+			return view('panels.showGuide', ['user' => $user , 'photo_url' => $url , 'user_province'=>$user_province , 'message' => 2]);
+		} else {
+			return view('panels.showGuide', ['user' => $user , 'photo_url' => $url , 'user_province'=>$user_province , 'message' => 1]);
+		}
+	}
+	public function followUser(Request $request)
+	{
+		$user = Auth::user();
+		$guideperson = Guideperson::all()->where('user_id', $request->user_id)->first();
+		
+		$user_following = $user->following;
+		$count = $user_following->where('user_id', $request->user_id)->count();
+		
+		if ($count == 0) {
+			$user->following()->attach($guideperson->id);
+		}
+		return redirect()->route('ShowGuide', [$guideperson->user_id]);
 	}
 }
+
