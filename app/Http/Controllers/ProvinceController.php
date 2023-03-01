@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use App\Models\Province;
+use App\Models\User;
 use Illuminate\Support\Facades\Redirect;
 
 class ProvinceController extends Controller
@@ -56,14 +57,14 @@ class ProvinceController extends Controller
 			$photofile,
 			$newphotofilename
 		);
-	}
+		}
 	
-	Province::Create([
+		Province::Create([
 		"name" => $request->name,
 		"description" => $request->description,
 		"photoname" => $newphotofilename,
 		"orginalphotoname" => $photofilename
-	]);
+		]);
 	
 		$message = 1;
 		return view('provinces.add', ['message' => $message]);
@@ -79,6 +80,7 @@ class ProvinceController extends Controller
 	{
 		//$province->comments;
 		$province->towns;
+		$guidepersons = User::all()->where('role','guide')->where('province_id',$province->id)->where('active',1);
 		$url = Storage::url('public/provinces/' . $province->photoname);
 
 		if (Auth::user()) {
@@ -87,14 +89,14 @@ class ProvinceController extends Controller
 
 			if (($rl == "admin") || ($rl == "guide")) {
 
-				return view('provinces.show', ['province' => $province , 'photo_url' => $url , 'role' => 1]);
+				return view('provinces.show', ['province' => $province , 'photo_url' => $url , 'role' => 1 , 'guidepersons' => $guidepersons]);
 			}
 			else {
-				return view('provinces.show', ['province' => $province , 'photo_url' => $url , 'role' => 0]);
+				return view('provinces.show', ['province' => $province , 'photo_url' => $url , 'role' => 0 , 'guidepersons' => $guidepersons]);
 			}
 		} 
 		else {
-			return view('provinces.show', ['province' => $province , 'photo_url' => $url , 'role' => 0]);
+			return view('provinces.show', ['province' => $province , 'photo_url' => $url , 'role' => 0 , 'guidepersons' => $guidepersons]);
 		}
 	}
 	/**
@@ -155,7 +157,7 @@ class ProvinceController extends Controller
 	));
 	
 	$province = Province::all()->where('id', $province->id);
-
+	$guidepersons = User::all()->where('role','guide')->where('province_id',$province->id);
 	$url = Storage::url('public/provinces/' . $province[0]->photoname);
 
 	if (Auth::user()) {
@@ -164,14 +166,14 @@ class ProvinceController extends Controller
 
 		if (($rl == "admin") || ($rl == "guide")) {
 
-			return view('provinces.show', ['province' => $province[0] , 'photo_url' => $url , 'role' => 1]);
+			return view('provinces.show', ['province' => $province[0] , 'photo_url' => $url , 'role' => 1 , 'guidepersons' => $guidepersons]);
 		}
 		else {
-			return view('provinces.show', ['province' => $province[0] , 'photo_url' => $url , 'role' => 0]);
+			return view('provinces.show', ['province' => $province[0] , 'photo_url' => $url , 'role' => 0 , 'guidepersons' => $guidepersons]);
 		}
 	} 
 	else {
-		return view('provinces.show', ['province' => $province[0] , 'photo_url' => $url , 'role' => 0]);
+		return view('provinces.show', ['province' => $province[0] , 'photo_url' => $url , 'role' => 0 , 'guidepersons' => $guidepersons]);
 	}
 	}
 	public function remove(Province $province)
