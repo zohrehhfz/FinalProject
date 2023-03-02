@@ -14,4 +14,8 @@ class Guideperson extends Model
          'certificatename',
          'orginalcertificatename',
     ];
+    public function user()
+	{
+		return $this->belongsTo('App\Models\User');
+	}
 }
