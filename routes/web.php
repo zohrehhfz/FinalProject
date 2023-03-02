@@ -74,6 +74,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/users/updateinfo',[UserController::class, 'update'])->name('UpdateUserGuideInfo');
     Route::get('/users/certificate/{user}',[UserController::class, 'certificate'])->name('ShowCertificate');
     Route::post('/users/follow',[UserController::class, 'followUser'])->name('followUser');
+    Route::get('/users/followings/{user}',[UserController::class, 'ShowFollowings'])->name('ShowFollowings');
+
     //Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     //Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
    // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
