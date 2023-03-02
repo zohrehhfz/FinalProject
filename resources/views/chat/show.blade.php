@@ -9,14 +9,101 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg" style="width:70%; margin:auto;">
                 <div class="p-6 border-b border-gray-200" dir=rtl style="margin: auto; background-color: #E5EAEE  ;">
                     <div class="chat-history" style="font-size: 15px;">
-                        <div><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-quote-fill d-inline" viewBox="0 0 16 16">
-                                <path d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM7.194 6.766a1.688 1.688 0 0 0-.227-.272 1.467 1.467 0 0 0-.469-.324l-.008-.004A1.785 1.785 0 0 0 5.734 6C4.776 6 4 6.746 4 7.667c0 .92.776 1.666 1.734 1.666.343 0 .662-.095.931-.26-.137.389-.39.804-.81 1.22a.405.405 0 0 0 .011.59c.173.16.447.155.614-.01 1.334-1.329 1.37-2.758.941-3.706a2.461 2.461 0 0 0-.227-.4zM11 9.073c-.136.389-.39.804-.81 1.22a.405.405 0 0 0 .012.59c.172.16.446.155.613-.01 1.334-1.329 1.37-2.758.942-3.706a2.466 2.466 0 0 0-.228-.4 1.686 1.686 0 0 0-.227-.273 1.466 1.466 0 0 0-.469-.324l-.008-.004A1.785 1.785 0 0 0 10.07 6c-.957 0-1.734.746-1.734 1.667 0 .92.777 1.666 1.734 1.666.343 0 .662-.095.931-.26z" />
-                            </svg>صفحه چت اعضای تور </div>
+                        <div style="margin-left: 78%">
+                        <?php
+                                    $photo_url = Storage::url('public/files/' . $contact->photoname);
+                                    if ($photo_url == "/storage/files/null") {
+                                    ?>
+                                        <td><img src="/user.gif" class="img-fluid img-circle" style="display:inline; width:70px; height:70px;" alt="profile photo Not Set"></td>
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <td> <img src="{{$photo_url}}" class="img-fluid img-circle" alt="Profile photo UnAvialable" style="display:inline; width:30px; height:30px;"></td>
+                                    <?php
+                                    }
+                                    ?>
+                                    <p style="display:inline;">{{$contact->name}}</p>
+                         </div>
                         <br>
                         <br>
                         <ul>
+                        <div class=" w-100">
+                                @foreach($chats as $message)
+                                <?php
+                                $user_id = $message->user_id;
+                                $user1 = DB::table('users')->select(['name','orginalphotoname','photoname'])->where('id',$user_id)->get();
+                                $photo_url = Storage::url('public/files/' . $user1[0]->photoname);
+                                $name = $user1[0]->name;
 
-                            
+                                $guide_id = $message->guideperson_id;
+                                $guided = DB::table('guidepersons')->select(['user_id'])->where('id',$guide_id)->get();
+                                $guide = DB::table('users')->select(['name','orginalphotoname','photoname'])->where('id',$guided[0]->user_id)->get();
+
+                                $photo_urlg = Storage::url('public/files/' . $guide[0]->photoname);
+                                $nameg = $guide[0]->name;
+                                ?>
+                              
+                               @if($message->flag == 1)
+                                <li class="clearfix" style="margin-left: 20vw;">
+                                    <div class="float-right" style="background-color: #A1C4E7  ; border-radius:20px; width: fit-content; margin: auto;">
+                                        <div class="d-inline" dir="rtl" style="text-align: right; color:#6D7173;">
+                                            <i style="text-align: right;">
+                                                <div style="float: right;">
+
+                                                    <?php
+                                                    if ($photo_url == "/storage/files/null") {
+                                                    ?>
+                                                        <img src="/user.gif" class="img-fluid img-circle d-inline" style="margin-right:1vw; width:40px; height:40px;" alt="profile photo Not Set">
+                                                    <?php
+                                                    } else {
+                                                    ?>
+                                                        <img src="{{$photo_url}}" class="img-fluid img-circle d-inline" alt="Profile photo UnAvialable" style="margin-right:1vw; width:40px; height:40px;">
+                                                    <?php
+                                                    }
+                                                    ?>
+
+                                                    {{$name}}
+                                                </div>
+                                                <div class="d-inline" style="float: left;"> <?php $v2 = new Verta($message->created_at);
+                                                                                            print $v2->formatJalaliDate(); ?></div>
+                                            </i>
+                                        </div>
+                                        <br> <br>
+                                        <div class="pl-2" style=" text-align: right;">{{$message->message}}</div>
+                                        <br>
+
+                                        <br>
+                                    </div>
+                                    <div></div>
+                                </li>
+                                <br>
+
+                                @else
+                                <li class="clearfix" style="margin-right: 33vw; float:left;">
+                                        <div class="float-left" style=" text-align: right; background-color:#C8DBED; border-radius:10px; width: fit-content; margin: auto;">
+                                                <div class="d-inline" dir="rtl" style="text-align: right; color:#6D7173;">
+                                                    <i style="text-align: right;">
+                                                        <div style="float: right;">{{$nameg}}</div>
+                                                        <div style="float: left;"><?php $v2 = new Verta($message->created_at);
+                                                                                    print $v2->formatJalaliDate(); ?></div>
+                                                    </i>
+                                                </div>
+                                                <br>
+                                                <div class="pb-4" style=" text-align: right;">
+                                                    {{$message->message}}
+                                                </div>
+                                        </div>
+                                        <div>
+                                            
+
+                                        </div>
+                                        <br>
+                                </li>
+                                <br>
+                                <br>
+                                @endif
+                                @endforeach
+                            </div>                      
                         </ul>
                     </div>
                     <!-- end chat -->
@@ -27,8 +114,7 @@
                             <form id="commentform" action="" method="post">
                                 @csrf
                                 <div style="margin-top:2vh; margin-bottom:2vh;">
-                                    <?php $i = $travel->id;
-                                    ?>
+                                    
                                     
                                     <textarea name="message" id="commentform" cols="70" rows="1" placeholder="پیام خود را بنویسید."></textarea>
                                     <button id="submitbutton" type="submit" style="background-color:#D9E7F3; color:black; width:auto; display:inline; margin:auto;"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-left" viewBox="0 0 16 16">
