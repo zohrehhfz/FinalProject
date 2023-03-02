@@ -163,5 +163,12 @@ class UserController extends Controller
 		}
 		return redirect()->route('ShowGuide', [$guideperson->user_id]);
 	}
+	public function ShowFollowings()
+	{
+		$user = Auth::user();
+		$user_following = $user->following;
+
+		return view('panels.following', ['users' => $user->following]);
+	}
 }
 
