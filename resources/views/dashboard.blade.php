@@ -63,12 +63,16 @@
 					@endif
 
 					<div class="div1" style="margin: auto;">
+					<button class="certificatebutton" ><a href="{{route('ShowFollowings',[$user])}}" style="color:white; text-decoration: none;"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-square-heart" viewBox="0 0 16 16" style="display:inline;">
+  					<path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-2.5a2 2 0 0 0-1.6.8L8 14.333 6.1 11.8a2 2 0 0 0-1.6-.8H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12ZM2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2Z"/>
+  					<path d="M8 3.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z"/>
+					</svg> &nbsp;&nbsp;دوستان </a></button>
 					@if($user->role == "guide")
 						@if($user->guidepersons->certificatename != NULL)
-						<button class="certificatebutton"><a href="{{route('ShowCertificate',[$user])}}" style="color:white; text-decoration: none;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;نمایش مدرک <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-award-fill mypen" viewBox="0 0 16 16">
+						<button class="certificatebutton"><a href="{{route('ShowCertificate',[$user])}}" style="color:white; text-decoration: none;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-award-fill" viewBox="0 0 16 16" style="display:inline;">
 									<path d="m8 0 1.669.864 1.858.282.842 1.68 1.337 1.32L13.4 6l.306 1.854-1.337 1.32-.842 1.68-1.858.282L8 12l-1.669-.864-1.858-.282-.842-1.68-1.337-1.32L2.6 6l-.306-1.854 1.337-1.32.842-1.68L6.331.864 8 0z" />
 									<path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z" />
-								</svg></a></button>
+								</svg>&nbsp;&nbsp;نمایش مدرک </a></button>
 
 						@endif
 						@if($user->active == true)
@@ -77,7 +81,6 @@
 						<p> وضعیت : غیر فعال</p>
 						@endif
 						@endif
-
 						<p>نام :
 							{{$user->name}}
 						</p>
