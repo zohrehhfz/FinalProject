@@ -168,7 +168,17 @@ class UserController extends Controller
 		$user = Auth::user();
 		$user_following = $user->following;
 
-		return view('panels.following', ['users' => $user->following]);
+		$guideperson = Guideperson::all()->where('user_id', $user->id)->first();
+		$followers;
+		if($guideperson != NULL)
+		{
+			$followers = $guideperson->followers;
+		}
+		else
+		{
+			$followers = NULL;
+		}
+		return view('panels.following', ['users' => $user->following , 'followers'=>$followers]);
 	}
 }
 
