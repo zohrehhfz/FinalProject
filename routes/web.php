@@ -62,7 +62,7 @@ Route::middleware(['auth','admin'])->group(function(){
 	Route::get('/provinceguides/seecertificate/{user}',[UserController::class, 'AdminSeeCertificate'])->name('AdminSeeCertificate');
 	Route::get('/provinceguides/show/users',[UserController::class,'ShowUsers'])->name('ShowUsers');
 	Route::get('/provinceguides/show/leaders',[UserController::class,'ShowGuides'])->name('ShowGuides');
-	//Route::get('/travel/delete/comment/{comment}',[CommentController::class, 'DeleteComment'])->name('DeleteComment');
+	Route::get('/province/delete/comment/{provincecomment}',[ProvincecommentController::class, 'DeleteComment'])->name('DeleteComment');
 });
 Route::get('/attractions/show/{attraction}' ,[TouristattractionController::class,'show'])->name('ShowAttraction');
 
@@ -77,9 +77,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/users/followings/{user}',[UserController::class, 'ShowFollowings'])->name('ShowFollowings');
     Route::get('/user/chat/{user}',[ChatController::class, 'ShowChat'])->name('ShowChat');
     Route::post('/user/chat/sendmessage',[ChatController::class, 'SendMessage'])->name('SendMessage');
-    //Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    //Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-   // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/province/setcomment',[ProvincecommentController::class, 'SetComment'])->name('SetComment');
 });
 
 require __DIR__.'/auth.php';
