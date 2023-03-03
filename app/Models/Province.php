@@ -20,4 +20,9 @@ class Province extends Model
 	{
 		return $this->hasMany('App\Models\Town');
 	}
+    public function comments()
+	{
+		return $this->hasMany('App\Models\Provincecomment');
+	}
+
 }
