@@ -18,8 +18,6 @@ class ChatController extends Controller
     public function ShowChat(User $user)
 	{
 		$auth_user = Auth::user();
-        $guideperson;
-        $real_user;
         if ($auth_user)
          {
         if($user->role == "guide")
@@ -47,5 +45,39 @@ class ChatController extends Controller
             
             return view('chat.show', ["chats" => $chats, "user" => $real_user, "guideperson" => $guideperson , "contact"=> $user]);
          }
+    }
+    public function SendMessage(Request $request)
+	{
+        //flag = 0 message from guide
+        //flag = 1 message from user
+
+		$request->validate([
+			'contact' => 'required',
+			'message' => 'required',
+		]);
+		$auth_user = Auth::user();
+        
+        if($auth_user->role == "user")
+        {
+            $guideperson = Guideperson::all()->where('user_id', $request->contact)->first();
+            $real_user = $auth_user;
+            $flag = 1;
+
         }
+        elseif($auth_user->role == "guide")
+        {
+            $guideperson = Guideperson::all()->where('user_id', $auth_user->id)->first();
+            $real_user = User::find($request->contact);
+            $flag = 0;
+        }
+
+		Chat::Create([
+			"user_id" => $real_user->id,
+			"guideperson_id" => $guideperson->id,
+			"flag" => $flag,
+			"message" => $request->message,
+		]);
+			return redirect()->route('ShowChat', ["user" => $request->contact]);
+	}
+
 }
