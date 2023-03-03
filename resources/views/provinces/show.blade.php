@@ -128,7 +128,73 @@
 				</div>
 			</div>
 		</div>
+		@if($province->comments->count() == 0)
+		<div class="sub_cm">
+			<div class="row">
+				<div class="col">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-text-fill" viewBox="0 0 16 16">
+						<path d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM4.5 5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7zm0 2.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7zm0 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4z" />
+					</svg>
+				</div>
+				<div class="col-11">
+					اولین نفری باشید که برای این سفر نظری ثبت می‌کند.
+				</div>
+			</div>
+		</div>
+		@else
+		@foreach($province->comments as $c)
+		<div class="sub_cm">
+			<div class="row">
+				<div class="col">
+					<?php
+					$user = $c->user;
+					$photo_url = Storage::url('public/files/' . $user->photoname);
+					$name = $user->name;
+					if ($photo_url == "/storage/files/null") {
+					?>
+						<img src="/user.gif" class="img-fluid img-circle" style="margin-right:0vw; width:40px; height:40px;" alt="profile photo Not Set">
+					<?php
+					} else {
+					?>
+						<img src="{{$photo_url}}" class="img-fluid img-circle" alt="Profile photo UnAvialable" style="margin-right:0vw; width:30px; height:30px;">
+					<?php
+					}
+					?>
+				</div>
+				<div class="col-11">
+					<p style="font-size:1vw;">{{$name}}:</p>
+					<p style="font-size:0.99vw;">{{$c->message}}</p>
+				</div>
+			</div>
+		</div>
+		<?php $auth_user = Auth::user();
+		?>
 		
+		@if($auth_user->role == "admin")
+		
+		<div style="float:left; margin-top :-40px;"> <a href="{{route('DeleteComment' , [ $c ])}}"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" style="margin-right: -14px; margin-top: -3vh; color:red;" class="bi bi-trash-fill" viewBox="0 0 16 16">
+					<path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
+				</svg></a></div>
+		@endif
+
+		@endforeach
+		@endif
+		<div class="sub_cm">
+			<div class="row">
+				<form id="commentform" action="{{route('SetComment')}}" method="post">
+					@csrf
+					<textarea name="message" id="commentform" cols="90" rows="1" placeholder="نظر خود را درباره این سفر بنویسید." style="border: none;"></textarea>
+					<input type="hidden" id="province" name="province" value={{ $province->id }}>
+					<button id="submitbutton" type="submit" style="color:white; width:auto; display:inline; margin:auto;"> ثبت <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-left" viewBox="0 0 16 16">
+							<path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+							<path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+						</svg></button>
+				</form>
+			</div>
+		</div>
+		<br>
+		<br>
+	</div>
 	<br>
 	<br>
 
