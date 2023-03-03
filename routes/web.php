@@ -54,6 +54,8 @@ Route::middleware(['auth','EnsureItIsAdminOrGuide'])->group(function(){
     Route::get('/attractions/remove/{attraction}',[TouristattractionController::class, 'remove'])->name('RemoveAttraction');
 
 });
+Route::get('/attractions/show/{attraction}' ,[TouristattractionController::class,'show'])->name('ShowAttraction');
+
 
 //admin
 Route::middleware(['auth','admin'])->group(function(){
@@ -64,7 +66,6 @@ Route::middleware(['auth','admin'])->group(function(){
 	Route::get('/provinceguides/show/leaders',[UserController::class,'ShowGuides'])->name('ShowGuides');
 	Route::get('/province/delete/comment/{provincecomment}',[ProvincecommentController::class, 'DeleteComment'])->name('DeleteComment');
 });
-Route::get('/attractions/show/{attraction}' ,[TouristattractionController::class,'show'])->name('ShowAttraction');
 
 Route::get('/provinceguides/{user}', [UserController::class,'ShowGuide'])->name('ShowGuide');
 Route::get('/dashboard', [ProfileController::class,'redirectTo'])->middleware(['auth'])->name('dashboard');
