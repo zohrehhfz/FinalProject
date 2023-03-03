@@ -165,47 +165,17 @@ class TownController extends Controller
 		"orginalphotoname" => $photofilename
 	));
 
-	$t = Town::all()->where('id',$town->id);
+	$t = Town::all()->where('id',$town->id)->first();
+	return redirect()->route('ShowTown', ["town" => $t->id]);
+
 	
-	$url = Storage::url('public/towns/' . $t[1]->photoname);
-
-	if (Auth::user()) {
-		$user = Auth::user();
-		$rl = $user->role;
-
-		if (($rl == "admin") || ($rl == "guide")) {
-
-			return view('towns.show', ['town' => $t[1] , 'photo_url' => $url , 'role' => 1]);
-		}
-		else {
-			return view('towns.show', ['town' => $t[1] , 'photo_url' => $url , 'role' => 0]);
-		}
-	} 
-	else {
-		return view('towns.show', ['town' => $t[1] , 'photo_url' => $url , 'role' => 0]);
-	}
 	}
 	
 	public function remove(Town $town)
 	{
 		Town::where('id', $town->id)->delete();
-		$province = Province::where('id', $town->province_id)->get();
-		
-		$url = Storage::url('public/provinces/' . $province[0]->photoname);
-		if (Auth::user()) {
-			$user = Auth::user();
-			$rl = $user->role;
-	
-			if (($rl == "admin") || ($rl == "guide")) {
-	
-				return view('provinces.show', ['province' => $province[0] , 'photo_url' => $url , 'role' => 1]);
-			}
-			else {
-				return view('provinces.show', ['province' => $province[0] , 'photo_url' => $url , 'role' => 0]);
-			}
-		} 
-		else {
-			return view('provinces.show', ['province' => $province[0] , 'photo_url' => $url , 'role' => 0]);
-		}	
+		$province = Province::all()->where('id', $town->province_id)->first();
+		return redirect()->route('ShowProvince', ["province" => $province->id]);
+
 	}
 }
