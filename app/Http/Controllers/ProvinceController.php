@@ -156,25 +156,8 @@ class ProvinceController extends Controller
 		"orginalphotoname" => $photofilename
 	));
 	
-	$province = Province::all()->where('id', $province->id);
-	$guidepersons = User::all()->where('role','guide')->where('province_id',$province[0]->id);
-	$url = Storage::url('public/provinces/' . $province[0]->photoname);
-
-	if (Auth::user()) {
-		$user = Auth::user();
-		$rl = $user->role;
-
-		if (($rl == "admin") || ($rl == "guide")) {
-
-			return view('provinces.show', ['province' => $province[0] , 'photo_url' => $url , 'role' => 1 , 'guidepersons' => $guidepersons]);
-		}
-		else {
-			return view('provinces.show', ['province' => $province[0] , 'photo_url' => $url , 'role' => 0 , 'guidepersons' => $guidepersons]);
-		}
-	} 
-	else {
-		return view('provinces.show', ['province' => $province[0] , 'photo_url' => $url , 'role' => 0 , 'guidepersons' => $guidepersons]);
-	}
+	$province = Province::all()->where('id', $province->id)->first();
+	return redirect()->route('ShowProvince', ["province" => $province->id]);
 	}
 	public function remove(Province $province)
 	{
